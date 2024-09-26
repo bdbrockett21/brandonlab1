@@ -45,7 +45,6 @@ mysteryExplode("abc") --> "aababc"
 mysteryExplode("ab") --> "aab"
 mysteryExplode(":-)") --> "::-:-)"
 ```
-
 ## Requirements
 
 You are required to complete the following:

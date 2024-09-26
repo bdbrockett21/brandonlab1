@@ -13,6 +13,7 @@ typedef enum{SUCCESS=0, FAILURE=1} status;
  * 
  */
 char* readString(char* fileName);
+    char *str = 
 
 /*
  * mysteryExplode - takes a string of characters and explodes it
