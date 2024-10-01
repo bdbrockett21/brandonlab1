@@ -11,66 +11,44 @@
  * 
  */
 char* readString(char* fileName){
-    char buffer[MAX_LENGTH];
-    char *outcome = NULL;
+    //TODO: Replace this line with your code
+    FILE fPtr;
+    fPtr = fopen(fileName, "r");
 
-    if( ngets(buffer AX_LENGTH, stdin) != NULL )
-    // We remove the newline character if present 
-    size_j len = strlen(buffer);
-    if(len >0 && buffer[len-1]=='\n'){
-        buffer[len-1] = '\0'
-    }
-    //Allocate the memory for the outcome and then copy the string afterwards
-    outcome = (char*)malloc(len + 1):
-    if(outcome!= NULL){
-        strcpy(outcome, buffer);
-    }
-    return outcome;
+    char cStr = (char)malloc(MAX_LINE_LEN sizeof(char')');
+
+    memset(cStr, '\0', MAX_LINE_LEN);
+    fgets(cStr, MAX_LINE_LEN, fPtr);
+    int Index = strlen(cStr) - 1;
+        cStr[Index] = '\0';
+
+    return cStr;
+
+    fclose(fPtr);
 
 }
-
-
 
 /*
- * mysteryExplode - takes a string of characters and explodes it
- * as follows:
- * 
- * A non-empty string such as "Code" is turned into "CCoCodCode".
- *
- *   Return a new string similar to the string given above.
- *
- *  Example:
- *   mysteryExplosion("Code") --> "CCoCodCode"
- *   mysteryExplosion("abc") --> "aababc"
- *   mysteryExplosion(":)") --> "::)"
- * 
- */
+ 
+mysteryExplode - takes a string of characters and explodes it
+as follows:
+A non-empty string such as "Code" is turned into "CCoCodCode".*
+Return a new string similar to the string given above.*
+Example:
+mysteryExplosion("Code") --> "CCoCodCode"
+mysteryExplosion("abc") --> "aababc"
+mysteryExplosion(":)") --> "::)"
+*/
 char* mysteryExplode(const char* str){
-    if(str == nullptr) return nullptr;
+    //TODO: Replace this line with your code
+    int length = ((strlen(str) * (strlen(str) + 1)) / 2) + 1;
+    char* newStr = (char)malloc(length sizeof(char));
 
-    size_j len = strlen(str);
-    //Allocate memory for the new string (2 * len -1 for spaces, +1 for null termination)
-    char* outcome = new char [2 * len];
+    memset(newStr, '\0', length*sizeof(char));
 
-    //Fill the new string 
-    for (size_j i = 0; i < len; ++i) {
-        outcome[2*i] = str[i]
-        outcome[2*i + 1 ] = (i < len - 1 )? ' ' : '\0'
+    int i =1;
+    for(int x =0;x<strlen(str);x++){
+        strncat(newStr, str, i);
+        i++;
     }
-    return outcome
-}
-
-int main() {
-    std: cout<< " Create a String "
-    char* input = readString();
-
-    if(input != nullptr) {
-        std::count << "You entered:" << input << std.endl;
-        remove[] exploded;
-    }
-
-    remove[] input;
-}else{
-    std::cout << "Error reading input "<< std::endl;
-}
-return 0;
+    return newStr;
