@@ -11,21 +11,15 @@
  * 
  */
 char* readString(char* fileName){
-    //TODO: Replace this line with your code
-    FILE fPtr;
-    fPtr = fopen(fileName, "r");
+    char* ret = (char*) malloc(100);
 
-    char cStr = (char)malloc(MAX_LINE_LEN sizeof(char')');
+    FILE *fileptr = fopen(fileName, "r");
 
-    memset(cStr, '\0', MAX_LINE_LEN);
-    fgets(cStr, MAX_LINE_LEN, fPtr);
-    int Index = strlen(cStr) - 1;
-        cStr[Index] = '\0';
+    fgets(ret, MAX_LINE_LEN, fileptr);
 
-    return cStr;
-
-    fclose(fPtr);
-
+    fclose(fileptr);
+    ret[strcspn(ret, "\n")] = '\0';
+    return ret;
 }
 
 /*
@@ -39,16 +33,32 @@ mysteryExplosion("Code") --> "CCoCodCode"
 mysteryExplosion("abc") --> "aababc"
 mysteryExplosion(":)") --> "::)"
 */
-char* mysteryExplode(const char* str){
-    //TODO: Replace this line with your code
-    int length = ((strlen(str) * (strlen(str) + 1)) / 2) + 1;
-    char* newStr = (char)malloc(length sizeof(char));
+#include <string.h>
+#include <stdlib.h>
 
-    memset(newStr, '\0', length*sizeof(char));
+char* mysteryExplode(const char* str) {
+    if (str == NULL) return NULL;
 
-    int i =1;
-    for(int x =0;x<strlen(str);x++){
-        strncat(newStr, str, i);
-        i++;
+    int len = strlen(str);
+    // Allocate memory for the exploded string
+    // The size is (len * (len + 1) / 2) for the characters + len - 1 for spaces + 1 for null terminator
+    char* exploded = (char*) malloc((len * (len + 1) / 2) + len);
+    
+    if (exploded == NULL) return NULL; // Check if allocation was successful
+
+    int index = 0;
+    for (int x = 1; x <= len; x++) {
+        // Copy x characters from str
+        strncpy(exploded + index, str, x);
+        index += x;
+        
+        // Add a space after each substring, except for the last one
+        if (x < len) {
+            exploded[index] = ' ';
+            index++;
+        }
     }
-    return newStr;
+    
+    exploded[index] = '\0';
+    return exploded;
+}
