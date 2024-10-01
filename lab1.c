@@ -11,9 +11,13 @@
  * 
  */
 char* readString(char* fileName){
-    char* ret = (char*) malloc(100);
-
     FILE *fileptr = fopen(fileName, "r");
+
+    char* ret = (char*) malloc(MAX_LINE_LEN*sizeof(char));
+    memset(ret,'\0',MAX_LINE_LEN)
+    fgets(cStr,MAX_LINE_LEN,fptr)
+
+    
 
     fgets(ret, MAX_LINE_LEN, fileptr);
 
